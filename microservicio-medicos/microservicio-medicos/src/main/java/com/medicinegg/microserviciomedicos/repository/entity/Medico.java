@@ -3,6 +3,7 @@ package com.medicinegg.microserviciomedicos.repository.entity;
 import jakarta.persistence.*;
 
 import java.sql.Date;
+import java.util.List;
 
 @Table(name = "medico")
 @Entity
@@ -21,6 +22,12 @@ public class Medico {
     @ManyToOne
     @JoinColumn(name="id_especialidad")
     private Especialidad especialidad;
+
+    @OneToMany(mappedBy = "medico")
+    private List<ConsultorioMedico> consultoriosMedicos;
+
+    @OneToMany(mappedBy = "medico")
+    private List<TurnoHorario> turnoHorarios;
 
     public long getMedicoID() {
         return medicoID;

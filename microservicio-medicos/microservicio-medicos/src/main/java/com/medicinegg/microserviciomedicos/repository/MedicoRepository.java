@@ -1,8 +1,10 @@
 package com.medicinegg.microserviciomedicos.repository;
 
+import com.medicinegg.microserviciomedicos.repository.entity.ConsultorioMedico;
 import com.medicinegg.microserviciomedicos.repository.entity.Medico;
 import org.springframework.data.repository.CrudRepository;
 
+import java.sql.Time;
 import java.util.List;
 
 public interface MedicoRepository{
@@ -14,4 +16,8 @@ public interface MedicoRepository{
     void updateMedico(Long id,Medico updatedMedico);
 
     void deleteMedico(Long id);
+
+    List<Medico> getMedicoByEspecialidad(Long idEspecialidad);
+
+    List<Medico> searchMedico(String especialidad, String ciudad, Time startHour, Time endHour);
 }

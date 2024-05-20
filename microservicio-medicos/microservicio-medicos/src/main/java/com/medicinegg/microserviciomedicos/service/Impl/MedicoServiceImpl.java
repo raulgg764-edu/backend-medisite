@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -79,4 +80,28 @@ public class MedicoServiceImpl implements MedicoService {
             medicoRepository.updateMedico((long) id, entity);
         }
     }
+
+    @Override
+    public List<MedicoModel> getMedicoByEspecialidad(int id) {
+        List<MedicoModel> medicoList = new ArrayList<>();
+        if(especialidadRepository.existsById((long)id)){
+            for(Medico medicoItem:medicoRepository.getMedicoByEspecialidad((long)id)){
+                medicoList.add(MedicoMapper.medicoEntityToMedicoModel(medicoItem));
+            }
+        }
+        return medicoList;
+    }
+
+    @Override
+    public List<MedicoModel> searchMedico(String especialidad, String ciudad, Time startHour, Time endHour) {
+        List<MedicoModel> medicoList = new ArrayList<>();
+        for(Medico medicoItem:medicoRepository.searchMedico(especialidad, ciudad, startHour, endHour)){
+            medicoList.add(MedicoMapper.medicoEntityToMedicoModel(medicoItem));
+        }
+
+
+        return medicoList;
+    }
+
+
 }

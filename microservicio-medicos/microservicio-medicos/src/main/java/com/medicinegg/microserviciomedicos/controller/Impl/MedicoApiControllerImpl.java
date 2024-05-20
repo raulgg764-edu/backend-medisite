@@ -13,6 +13,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.sql.Time;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 @RestController
@@ -74,5 +77,37 @@ public class MedicoApiControllerImpl implements MedicoApiController {
                 throw new ResponseStatusException(HttpStatus.NOT_FOUND);
             }
         }
+    }
+
+    @Override
+    public ResponseEntity<List<MedicoModel>> getMedicoByEspecialidad(int id) {
+        return ResponseEntity.ok().body(medicoService.getMedicoByEspecialidad(id));
+    }
+
+    @Override
+    public ResponseEntity<List<MedicoModel>> searchMedico(String especialidad, String ciudad, String startHour, String endHour) {
+
+        Time timeStartHour = null;
+        Time timeEndHour = null;
+
+        if(startHour!=null&endHour!=null){
+            SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+            long msStart = 0;
+            try {
+                msStart = sdf.parse(startHour).getTime();
+            } catch (ParseException e) {
+                throw new RuntimeException(e);
+            }
+            long msEnd = 0;
+            try {
+                msEnd = sdf.parse(endHour).getTime();
+            } catch (ParseException e) {
+                throw new RuntimeException(e);
+            }
+            timeStartHour = new Time(msStart);
+            timeEndHour = new Time(msEnd);
+        }
+
+        return ResponseEntity.ok().body(medicoService.searchMedico(especialidad, ciudad, timeStartHour, timeEndHour));
     }
 }
