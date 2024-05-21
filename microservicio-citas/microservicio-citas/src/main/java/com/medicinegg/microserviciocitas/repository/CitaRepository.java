@@ -19,4 +19,6 @@ public interface CitaRepository {
 
     String cancelarCita(Long id);
 
+    void updateCita(Long id, Cita cita);
+
 }

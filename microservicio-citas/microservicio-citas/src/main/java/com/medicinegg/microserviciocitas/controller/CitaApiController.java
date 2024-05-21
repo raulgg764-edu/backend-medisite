@@ -6,7 +6,6 @@ import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.Date;
 import java.util.List;
 
 @RequestMapping("/cita")
@@ -23,4 +22,7 @@ public interface CitaApiController {
 
     @PutMapping("/cancel/{id}")
     public ResponseEntity<String> cancelarCita(@PathVariable Long id);
+
+    @PutMapping("/{id}")
+    public ResponseEntity<CitaModel> updateCita(@PathVariable Long id, @Valid @RequestBody CreateCitaModel createCitaModel);
 }

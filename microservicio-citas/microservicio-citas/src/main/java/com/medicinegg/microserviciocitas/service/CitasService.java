@@ -16,4 +16,6 @@ public interface CitasService {
     CitaModel getCitaDetailsById(Long id);
 
     String cancelarCita(Long id);
+
+    void updateCita(Long id, CreateCitaModel cita);
 }

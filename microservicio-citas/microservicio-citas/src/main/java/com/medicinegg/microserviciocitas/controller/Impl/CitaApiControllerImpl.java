@@ -43,19 +43,38 @@ public class CitaApiControllerImpl implements CitaApiController {
 
     @Override
     public ResponseEntity<CitaModel> getCitaDetailsById(Long id) {
-        CitaModel cita = citasService.getCitaDetailsById(id);
-        if(cita==null){
+        CitaModel cita = new CitaModel();
+
+        try {
+            cita = citasService.getCitaDetailsById(id);
+        } catch (Exception e){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
+
         return ResponseEntity.ok().body(cita);
     }
 
     @Override
     public ResponseEntity<String> cancelarCita(Long id) {
-        if(getCitaDetailsById(id)==null){
+        try{
+            CitaModel test = citasService.getCitaDetailsById(id);
+        }catch(Exception e){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
         return ResponseEntity.ok().body(citasService.cancelarCita(id));
+    }
+
+    @Override
+    public ResponseEntity<CitaModel> updateCita(Long id, CreateCitaModel createCitaModel) {
+
+        try{
+            citasService.updateCita(id, createCitaModel);
+        }catch(Exception e){
+            System.out.println(e);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+
+        return ResponseEntity.ok().body(citasService.getCitaDetailsById(id));
     }
 
 

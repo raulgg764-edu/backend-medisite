@@ -1,6 +1,7 @@
 package com.medicinegg.microserviciocitas.repository.Impl;
 
 import com.medicinegg.microserviciocitas.model.CreateCitaModel;
+import com.medicinegg.microserviciocitas.model.TurnoMedicoModel;
 import com.medicinegg.microserviciocitas.repository.CitaRepository;
 import com.medicinegg.microserviciocitas.repository.entity.Cita;
 import jakarta.persistence.EntityManager;
@@ -65,13 +66,20 @@ public class CitaRepositoryImpl implements CitaRepository {
         if(cita != null){
             cita.setEstado("cancelada");
             em.merge(cita);
-            response = "La cita del " + cita.getFecha().toLocalDate().getDayOfWeek() + " " + cita.getFecha() + " a las " + cita.getHoraInicio().toLocalTime() + "ha sido cancelada.";
+            response = "La cita del " + cita.getFecha().toLocalDate().getDayOfWeek() + " " + cita.getFecha() + " a las " + cita.getHoraInicio().toLocalTime() + " ha sido cancelada.";
         }else{
             response = "La cita no existe";
         }
 
 
         return response;
+    }
+
+    @Transactional
+    @Override
+    public void updateCita(Long id, Cita cita) {
+        cita.setCitaID(id);
+        em.merge(cita);
     }
 
 

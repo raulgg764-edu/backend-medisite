@@ -23,7 +23,6 @@ public class TurnoHorario {
     private Time finTurno;
 
 
-
     public Medico getMedico() {
         return medico;
     }

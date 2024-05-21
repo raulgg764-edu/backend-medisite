@@ -4,6 +4,7 @@ import com.medicinegg.microserviciocitas.feignclient.MedicoFeignClient;
 import com.medicinegg.microserviciocitas.model.CitaModel;
 import com.medicinegg.microserviciocitas.model.CreateCitaModel;
 import com.medicinegg.microserviciocitas.model.MedicoModel;
+import com.medicinegg.microserviciocitas.model.TurnoMedicoModel;
 import com.medicinegg.microserviciocitas.repository.CitaRepository;
 import com.medicinegg.microserviciocitas.repository.PacienteRepository;
 import com.medicinegg.microserviciocitas.repository.entity.Cita;
@@ -11,6 +12,7 @@ import com.medicinegg.microserviciocitas.service.CitasService;
 import com.medicinegg.microserviciocitas.utils.CitaMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.sql.Date;
 import java.sql.Time;
@@ -38,8 +40,7 @@ public class CitasServiceImpl implements CitasService {
         MedicoModel medico = medicoFeignClient.getMedicoById(createCita.getId_medico());
 
         if(pacienteRepository.existsById((long) createCita.getId_paciente()) && medico!=null){
-            Date fecha = Date.valueOf(createCita.getFecha());
-
+            /*Date fecha = Date.valueOf(createCita.getFecha());
             SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
 
             Time horaInicio = null;
@@ -61,9 +62,11 @@ public class CitasServiceImpl implements CitasService {
             entity.setHoraFin(horaFin);
             entity.setId_medico(createCita.getId_medico());
             entity.setPaciente(pacienteRepository.findById((long)createCita.getId_paciente()).orElse(null));
-            entity.setEstado("reservada");
+            entity.setEstado("reservada");*/
 
-            if(citaRepository.verifyAvailability(entity)){
+            entity = CitaMapper.createCitaModelToCitaEntity(createCita,pacienteRepository);
+
+            if(citaRepository.verifyAvailability(entity) && verifyTurnos(createCita.getId_medico(), createCita.getFecha(), createCita.getHoraInicio())){
                 citaRepository.createCita(entity);
                 return CitaMapper.citaEntityTocitaModel(entity,medicoFeignClient);
             }else {
@@ -107,6 +110,24 @@ public class CitasServiceImpl implements CitasService {
     public String cancelarCita(Long id) {
 
         return citaRepository.cancelarCita(id);
+    }
+
+    @Override
+    public void updateCita(Long id, CreateCitaModel cita) {
+        Cita entity = CitaMapper.createCitaModelToCitaEntity(cita,pacienteRepository);
+        citaRepository.updateCita(id, entity);
+
+        if(citaRepository.verifyAvailability(entity)){
+            citaRepository.createCita(entity);
+        }
+    }
+
+    public boolean verifyTurnos(int id_medico, String date, String hour){
+        List<TurnoMedicoModel> availableTurn = medicoFeignClient.getTurnoByMedicoDateHour(id_medico, date, hour);
+        if(availableTurn.isEmpty()){
+            return false;
+        }
+        return true;
     }
 
 
