@@ -1,31 +1,28 @@
-package com.medicinegg.microserviciomedicos.repository.entity;
+package com.medicinegg.microserviciomedicos.model;
 
-import jakarta.persistence.*;
+import com.medicinegg.microserviciomedicos.repository.entity.Ciudad;
+import com.medicinegg.microserviciomedicos.repository.entity.Medico;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
-import java.sql.Date;
-
-@Table(name = "consultorioMedico")
-@Entity
-public class ConsultorioMedico {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+public class ConsultorioMedicoModel {
     private long consultorioID;
-
     private String numExterior;
     private String numInterior;
     private String calle;
     private String colonia;
-    @ManyToOne
-    @JoinColumn(name = "id_ciudad")
-    private Ciudad ciudad;
+    private CiudadModel ciudad;
     private String estado;
     private String pais;
     private String cp;
 
-    @ManyToOne
-    @JoinColumn(name="id_medico")
-    private Medico medico;
+    public long getConsultorioID() {
+        return consultorioID;
+    }
+
+    public void setConsultorioID(long consultorioID) {
+        this.consultorioID = consultorioID;
+    }
 
     public String getNumExterior() {
         return numExterior;
@@ -51,11 +48,11 @@ public class ConsultorioMedico {
         this.colonia = colonia;
     }
 
-    public Ciudad getId_ciudad() {
+    public CiudadModel getCiudad() {
         return ciudad;
     }
 
-    public void setId_ciudad(Ciudad ciudad) {
+    public void setCiudad(CiudadModel ciudad) {
         this.ciudad = ciudad;
     }
 
@@ -83,31 +80,11 @@ public class ConsultorioMedico {
         this.cp = cp;
     }
 
-    public Medico getMedico() {
-        return medico;
-    }
-
-    public void setMedico(Medico medico) {
-        this.medico = medico;
-    }
-
-    public long getConsultorioID() {
-        return consultorioID;
-    }
-
     public String getCalle() {
         return calle;
     }
 
     public void setCalle(String calle) {
         this.calle = calle;
-    }
-
-    public Ciudad getCiudad() {
-        return ciudad;
-    }
-
-    public void setCiudad(Ciudad ciudad) {
-        this.ciudad = ciudad;
     }
 }

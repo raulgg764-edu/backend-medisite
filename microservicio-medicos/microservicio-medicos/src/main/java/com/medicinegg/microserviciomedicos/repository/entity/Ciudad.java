@@ -24,4 +24,12 @@ public class Ciudad {
     public void setNombreCiudad(String nombreCiudad) {
         this.nombreCiudad = nombreCiudad;
     }
+
+    public long getCiudadID() {
+        return ciudadID;
+    }
+
+    public void setCiudadID(long ciudadID) {
+        this.ciudadID = ciudadID;
+    }
 }

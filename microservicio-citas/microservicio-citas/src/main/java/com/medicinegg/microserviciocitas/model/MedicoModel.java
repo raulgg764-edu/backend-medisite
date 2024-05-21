@@ -1,33 +1,21 @@
-package com.medicinegg.microserviciomedicos.repository.entity;
-
-import jakarta.persistence.*;
+package com.medicinegg.microserviciocitas.model;
 
 import java.sql.Date;
 import java.util.List;
 
-@Table(name = "medico")
-@Entity
-public class Medico {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private long medicoID;
+public class MedicoModel {
 
+    private long medicoID;
     private String cedulaProfesional;
     private String nombres;
     private String apellidoP;
     private String apellidoM;
     private Date fechaNacimiento;
     private String telefono;
-    @ManyToOne
-    @JoinColumn(name="id_especialidad")
-    private Especialidad especialidad;
+    private EspecialidadModel especialidad;
+    private List<ConsultorioMedicoModel> consultoriosMedicos;
 
-    @OneToMany(mappedBy = "medico")
-    private List<ConsultorioMedico> consultoriosMedicos;
-
-    @OneToMany(mappedBy = "medico")
-    private List<TurnoHorario> turnoHorarios;
+    private List<TurnoHorarioModel> turnoHorarios;
 
     public long getMedicoID() {
         return medicoID;
@@ -36,7 +24,6 @@ public class Medico {
     public void setMedicoID(long medicoID) {
         this.medicoID = medicoID;
     }
-
 
     public String getCedulaProfesional() {
         return cedulaProfesional;
@@ -86,19 +73,27 @@ public class Medico {
         this.telefono = telefono;
     }
 
-    public Especialidad getEspecialidad() {
+    public EspecialidadModel getEspecialidad() {
         return especialidad;
     }
 
-    public void setEspecialidad(Especialidad especialidad) {
+    public void setEspecialidad(EspecialidadModel especialidad) {
         this.especialidad = especialidad;
     }
 
-    public List<ConsultorioMedico> getConsultoriosMedicos() {
+    public List<ConsultorioMedicoModel> getConsultoriosMedicos() {
         return consultoriosMedicos;
     }
 
-    public List<TurnoHorario> getTurnoHorarios() {
+    public void setConsultoriosMedicos(List<ConsultorioMedicoModel> consultoriosMedicos) {
+        this.consultoriosMedicos = consultoriosMedicos;
+    }
+
+    public List<TurnoHorarioModel> getTurnoHorarios() {
         return turnoHorarios;
+    }
+
+    public void setTurnoHorarios(List<TurnoHorarioModel> turnoHorarios) {
+        this.turnoHorarios = turnoHorarios;
     }
 }

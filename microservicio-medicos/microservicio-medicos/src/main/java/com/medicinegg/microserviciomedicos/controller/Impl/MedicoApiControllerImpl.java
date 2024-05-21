@@ -2,6 +2,7 @@ package com.medicinegg.microserviciomedicos.controller.Impl;
 
 import com.medicinegg.microserviciomedicos.controller.MedicoApiController;
 import com.medicinegg.microserviciomedicos.model.CreateMedicoModel;
+import com.medicinegg.microserviciomedicos.model.MedicoDetailsModel;
 import com.medicinegg.microserviciomedicos.model.MedicoModel;
 import com.medicinegg.microserviciomedicos.service.EspecialidadService;
 import com.medicinegg.microserviciomedicos.service.MedicoService;
@@ -33,7 +34,7 @@ public class MedicoApiControllerImpl implements MedicoApiController {
     }
 
     @Override
-    public ResponseEntity<MedicoModel> getMedicoById(int id) {
+    public ResponseEntity<MedicoDetailsModel> getMedicoById(int id) {
         return ResponseEntity.ok().body(medicoService.getMedicoById(id));
     }
 
@@ -85,7 +86,7 @@ public class MedicoApiControllerImpl implements MedicoApiController {
     }
 
     @Override
-    public ResponseEntity<List<MedicoModel>> searchMedico(String especialidad, String ciudad, String startHour, String endHour) {
+    public ResponseEntity<List<MedicoDetailsModel>> searchMedico(String especialidad, String ciudad, String startHour, String endHour) {
 
         Time timeStartHour = null;
         Time timeEndHour = null;
@@ -109,5 +110,10 @@ public class MedicoApiControllerImpl implements MedicoApiController {
         }
 
         return ResponseEntity.ok().body(medicoService.searchMedico(especialidad, ciudad, timeStartHour, timeEndHour));
+    }
+
+    @Override
+    public ResponseEntity<List<MedicoDetailsModel>> getMedicosDetail() {
+        return ResponseEntity.ok().body(medicoService.getMedicosDetails());
     }
 }

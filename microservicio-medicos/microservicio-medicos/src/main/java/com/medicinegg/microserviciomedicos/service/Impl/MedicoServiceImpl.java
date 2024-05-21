@@ -1,12 +1,16 @@
 package com.medicinegg.microserviciomedicos.service.Impl;
 
-import com.medicinegg.microserviciomedicos.model.CreateMedicoModel;
-import com.medicinegg.microserviciomedicos.model.MedicoModel;
+import com.medicinegg.microserviciomedicos.model.*;
 import com.medicinegg.microserviciomedicos.repository.EspecialidadRepository;
 import com.medicinegg.microserviciomedicos.repository.MedicoRepository;
+import com.medicinegg.microserviciomedicos.repository.entity.ConsultorioMedico;
 import com.medicinegg.microserviciomedicos.repository.entity.Medico;
+import com.medicinegg.microserviciomedicos.repository.entity.TurnoHorario;
 import com.medicinegg.microserviciomedicos.service.MedicoService;
+import com.medicinegg.microserviciomedicos.utils.ConsultorioMedicoMapper;
+import com.medicinegg.microserviciomedicos.utils.EspecialidadMapper;
 import com.medicinegg.microserviciomedicos.utils.MedicoMapper;
+import com.medicinegg.microserviciomedicos.utils.TurnoHorarioMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,10 +38,10 @@ public class MedicoServiceImpl implements MedicoService {
     }
 
     @Override
-    public MedicoModel getMedicoById(int id) {
+    public MedicoDetailsModel getMedicoById(int id) {
         Medico medicoEntity = medicoRepository.getMedicoById((long) id);
 
-        return MedicoMapper.medicoEntityToMedicoModel(medicoEntity);
+        return MedicoMapper.createMedicoEntityToMedicoDetailsModel(medicoEntity);
     }
 
     @Override
@@ -93,14 +97,44 @@ public class MedicoServiceImpl implements MedicoService {
     }
 
     @Override
-    public List<MedicoModel> searchMedico(String especialidad, String ciudad, Time startHour, Time endHour) {
-        List<MedicoModel> medicoList = new ArrayList<>();
+    public List<MedicoDetailsModel> searchMedico(String especialidad, String ciudad, Time startHour, Time endHour) {
+        List<MedicoDetailsModel> medicoList = new ArrayList<>();
         for(Medico medicoItem:medicoRepository.searchMedico(especialidad, ciudad, startHour, endHour)){
-            medicoList.add(MedicoMapper.medicoEntityToMedicoModel(medicoItem));
+            medicoList.add(MedicoMapper.createMedicoEntityToMedicoDetailsModel(medicoItem));
         }
 
-
         return medicoList;
+    }
+
+    @Override
+    public List<MedicoDetailsModel> getMedicosDetails() {
+        List<MedicoDetailsModel> medicoDetailsList = new ArrayList<>();
+        for(Medico medicoItem:medicoRepository.getMedicoList()){
+            /*MedicoDetailsModel detailsItem = new MedicoDetailsModel();
+            detailsItem.setMedicoID(medicoItem.getMedicoID());
+            detailsItem.setCedulaProfesional(medicoItem.getCedulaProfesional());
+            detailsItem.setNombres(medicoItem.getNombres());
+            detailsItem.setApellidoP(medicoItem.getApellidoP());
+            detailsItem.setApellidoM(medicoItem.getApellidoM());
+            detailsItem.setFechaNacimiento(medicoItem.getFechaNacimiento());
+            detailsItem.setTelefono(medicoItem.getTelefono());
+            detailsItem.setEspecialidad(EspecialidadMapper.especialidadEntityToEspecialidadModel(medicoItem.getEspecialidad()));
+
+            List<ConsultorioMedicoModel> consultorioList = new ArrayList<>();
+            for(ConsultorioMedico consultorioItem:medicoItem.getConsultoriosMedicos()){
+                consultorioList.add(ConsultorioMedicoMapper.consultorioMedicoEntityToConsultorioMedicoModel(consultorioItem));
+            }
+            detailsItem.setConsultoriosMedicos(consultorioList);
+
+            List<TurnoHorarioModel> turnoHorarioList = new ArrayList<>();
+            for(TurnoHorario turnoHorarioItem:medicoItem.getTurnoHorarios()){
+                turnoHorarioList.add(TurnoHorarioMapper.turnoHorarioEntityToTurnoHorarioModel(turnoHorarioItem));
+            }
+            detailsItem.setTurnoHorarios(turnoHorarioList);*/
+
+            medicoDetailsList.add(MedicoMapper.createMedicoEntityToMedicoDetailsModel(medicoItem));
+        }
+        return medicoDetailsList;
     }
 
 

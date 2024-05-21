@@ -1,49 +1,34 @@
-package com.medicinegg.microserviciomedicos.repository.entity;
+package com.medicinegg.microserviciocitas.repository.entity;
 
 import jakarta.persistence.*;
 
 import java.sql.Date;
 import java.util.List;
 
-@Table(name = "medico")
+@Table(name = "paciente")
 @Entity
-public class Medico {
+public class Paciente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    private long medicoID;
+    private long pacienteID;
 
-    private String cedulaProfesional;
     private String nombres;
     private String apellidoP;
     private String apellidoM;
     private Date fechaNacimiento;
     private String telefono;
-    @ManyToOne
-    @JoinColumn(name="id_especialidad")
-    private Especialidad especialidad;
+    private String emailPersonal;
 
-    @OneToMany(mappedBy = "medico")
-    private List<ConsultorioMedico> consultoriosMedicos;
+    @OneToMany(mappedBy = "paciente")
+    private List<Cita> citas;
 
-    @OneToMany(mappedBy = "medico")
-    private List<TurnoHorario> turnoHorarios;
-
-    public long getMedicoID() {
-        return medicoID;
+    public long getPacienteID() {
+        return pacienteID;
     }
 
-    public void setMedicoID(long medicoID) {
-        this.medicoID = medicoID;
-    }
-
-
-    public String getCedulaProfesional() {
-        return cedulaProfesional;
-    }
-
-    public void setCedulaProfesional(String cedulaProfesional) {
-        this.cedulaProfesional = cedulaProfesional;
+    public void setPacienteID(long pacienteID) {
+        this.pacienteID = pacienteID;
     }
 
     public String getNombres() {
@@ -86,19 +71,11 @@ public class Medico {
         this.telefono = telefono;
     }
 
-    public Especialidad getEspecialidad() {
-        return especialidad;
+    public String getEmailPersonal() {
+        return emailPersonal;
     }
 
-    public void setEspecialidad(Especialidad especialidad) {
-        this.especialidad = especialidad;
-    }
-
-    public List<ConsultorioMedico> getConsultoriosMedicos() {
-        return consultoriosMedicos;
-    }
-
-    public List<TurnoHorario> getTurnoHorarios() {
-        return turnoHorarios;
+    public void setEmailPersonal(String emailPersonal) {
+        this.emailPersonal = emailPersonal;
     }
 }

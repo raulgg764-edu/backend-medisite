@@ -2,6 +2,7 @@ package com.medicinegg.microserviciomedicos.controller;
 
 
 import com.medicinegg.microserviciomedicos.model.CreateMedicoModel;
+import com.medicinegg.microserviciomedicos.model.MedicoDetailsModel;
 import com.medicinegg.microserviciomedicos.model.MedicoModel;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +18,7 @@ public interface MedicoApiController {
     public ResponseEntity<List<MedicoModel>> getAllMedico();
 
     @GetMapping("/{id}")
-    public ResponseEntity<MedicoModel> getMedicoById(@PathVariable int id);
+    public ResponseEntity<MedicoDetailsModel> getMedicoById(@PathVariable int id);
 
     @PostMapping("/")
     public ResponseEntity<MedicoModel> createMedico(@Valid @RequestBody CreateMedicoModel newMedico, BindingResult result);
@@ -32,6 +33,8 @@ public interface MedicoApiController {
     public ResponseEntity<List<MedicoModel>> getMedicoByEspecialidad(@PathVariable int id);
 
     @GetMapping("/search/")
-    public ResponseEntity<List<MedicoModel>> searchMedico(@RequestParam(required = false) String especialidad,@RequestParam(required = false) String ciudad,@RequestParam(required = false) String startHour,@RequestParam(required = false) String endHour);
+    public ResponseEntity<List<MedicoDetailsModel>> searchMedico(@RequestParam(required = false) String especialidad,@RequestParam(required = false) String ciudad,@RequestParam(required = false) String startHour,@RequestParam(required = false) String endHour);
 
+    @GetMapping("/details/")
+    public ResponseEntity<List<MedicoDetailsModel>> getMedicosDetail();
 }
