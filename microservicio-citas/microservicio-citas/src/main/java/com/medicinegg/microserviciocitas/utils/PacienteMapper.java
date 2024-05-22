@@ -15,4 +15,17 @@ public class PacienteMapper {
 
         return model;
     }
+
+    public static Paciente pacienteModelToPacienteEntity(PacienteModel model){
+        Paciente entity = new Paciente();
+
+        entity.setNombres(model.getNombres());
+        entity.setApellidoP(model.getApellidoP());
+        entity.setApellidoM(model.getApellidoM());
+        entity.setFechaNacimiento(model.getFechaNacimiento());
+        entity.setTelefono(model.getTelefono());
+        entity.setEmailPersonal(model.getEmailPersonal());
+
+        return entity;
+    }
 }

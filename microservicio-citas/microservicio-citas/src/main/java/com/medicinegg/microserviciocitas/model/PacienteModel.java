@@ -1,13 +1,29 @@
 package com.medicinegg.microserviciocitas.model;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.sql.Date;
 
 public class PacienteModel {
+
+    @NotEmpty
     private String nombres;
+    @NotEmpty
     private String apellidoP;
+    @NotEmpty
     private String apellidoM;
+    @NotNull
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date fechaNacimiento;
+    @NotEmpty
     private String telefono;
+    @NotEmpty
+    @Email(message = "Email address is not valid")
+    @Pattern(regexp = "^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$",message = "Email address is not valid")
     private String emailPersonal;
 
     public String getNombres() {

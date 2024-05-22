@@ -2,12 +2,14 @@ package com.medicinegg.microserviciocitas.controller;
 
 import com.medicinegg.microserviciocitas.model.CitaModel;
 import com.medicinegg.microserviciocitas.model.CreateCitaModel;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Tag(name = "Citas", description = "Operaciones relacionadas a la gestión de las citas médicas")
 @RequestMapping("/cita")
 public interface CitaApiController {
 
