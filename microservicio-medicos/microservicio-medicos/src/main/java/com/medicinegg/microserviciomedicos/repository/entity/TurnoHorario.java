@@ -13,7 +13,7 @@ public class TurnoHorario {
     @Column(name = "id", nullable = false)
     private long turnoID;
 
-    private List<String> days;
+    private String diasTurno;
 
     @ManyToOne
     @JoinColumn(name = "id_medico")
@@ -22,13 +22,6 @@ public class TurnoHorario {
     private Time inicioTurno;
     private Time finTurno;
 
-    public List<String> getDays() {
-        return days;
-    }
-
-    public void setDays(List<String> days) {
-        this.days = days;
-    }
 
     public Medico getMedico() {
         return medico;
@@ -52,5 +45,21 @@ public class TurnoHorario {
 
     public void setFinTurno(Time finTurno) {
         this.finTurno = finTurno;
+    }
+
+    public long getTurnoID() {
+        return turnoID;
+    }
+
+    public void setTurnoID(long turnoID) {
+        this.turnoID = turnoID;
+    }
+
+    public String getDiasTurno() {
+        return diasTurno;
+    }
+
+    public void setDiasTurno(String diasTurno) {
+        this.diasTurno = diasTurno;
     }
 }

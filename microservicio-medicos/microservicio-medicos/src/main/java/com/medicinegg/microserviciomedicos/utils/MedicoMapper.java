@@ -1,13 +1,16 @@
 package com.medicinegg.microserviciomedicos.utils;
 
-import com.medicinegg.microserviciomedicos.model.CreateMedicoModel;
-import com.medicinegg.microserviciomedicos.model.MedicoModel;
+import com.medicinegg.microserviciomedicos.model.*;
 import com.medicinegg.microserviciomedicos.repository.EspecialidadRepository;
+import com.medicinegg.microserviciomedicos.repository.entity.ConsultorioMedico;
 import com.medicinegg.microserviciomedicos.repository.entity.Medico;
+import com.medicinegg.microserviciomedicos.repository.entity.TurnoHorario;
 import com.medicinegg.microserviciomedicos.service.EspecialidadService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MedicoMapper {
 
@@ -62,5 +65,31 @@ public class MedicoMapper {
         entity.setEspecialidad(EspecialidadMapper.especialidadModelToEspecialidadEntity(especialidadService.getEspecialidadById(createModel.getId_especialidad())));
 
         return entity;
+    }
+
+    public static MedicoDetailsModel createMedicoEntityToMedicoDetailsModel(Medico medicoItem){
+        MedicoDetailsModel detailsItem = new MedicoDetailsModel();
+        detailsItem.setMedicoID(medicoItem.getMedicoID());
+        detailsItem.setCedulaProfesional(medicoItem.getCedulaProfesional());
+        detailsItem.setNombres(medicoItem.getNombres());
+        detailsItem.setApellidoP(medicoItem.getApellidoP());
+        detailsItem.setApellidoM(medicoItem.getApellidoM());
+        detailsItem.setFechaNacimiento(medicoItem.getFechaNacimiento());
+        detailsItem.setTelefono(medicoItem.getTelefono());
+        detailsItem.setEspecialidad(EspecialidadMapper.especialidadEntityToEspecialidadModel(medicoItem.getEspecialidad()));
+
+        List<ConsultorioMedicoModel> consultorioList = new ArrayList<>();
+        for(ConsultorioMedico consultorioItem:medicoItem.getConsultoriosMedicos()){
+            consultorioList.add(ConsultorioMedicoMapper.consultorioMedicoEntityToConsultorioMedicoModel(consultorioItem));
+        }
+        detailsItem.setConsultoriosMedicos(consultorioList);
+
+        List<TurnoHorarioModel> turnoHorarioList = new ArrayList<>();
+        for(TurnoHorario turnoHorarioItem:medicoItem.getTurnoHorarios()){
+            turnoHorarioList.add(TurnoHorarioMapper.turnoHorarioEntityToTurnoHorarioModel(turnoHorarioItem));
+        }
+        detailsItem.setTurnoHorarios(turnoHorarioList);
+
+        return detailsItem;
     }
 }

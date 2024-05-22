@@ -1,31 +1,27 @@
-package com.medicinegg.microserviciomedicos.repository.entity;
+package com.medicinegg.microserviciocitas.model;
 
-import jakarta.persistence.*;
 
-import java.sql.Date;
-
-@Table(name = "consultorioMedico")
-@Entity
-public class ConsultorioMedico {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+public class ConsultorioMedicoModel {
     private long consultorioID;
 
     private String numExterior;
     private String numInterior;
     private String calle;
     private String colonia;
-    @ManyToOne
-    @JoinColumn(name = "id_ciudad")
-    private Ciudad ciudad;
+    private CiudadModel ciudad;
     private String estado;
     private String pais;
     private String cp;
 
-    @ManyToOne
-    @JoinColumn(name="id_medico")
-    private Medico medico;
+    private MedicoModel medico;
+
+    public long getConsultorioID() {
+        return consultorioID;
+    }
+
+    public void setConsultorioID(long consultorioID) {
+        this.consultorioID = consultorioID;
+    }
 
     public String getNumExterior() {
         return numExterior;
@@ -43,6 +39,14 @@ public class ConsultorioMedico {
         this.numInterior = numInterior;
     }
 
+    public String getCalle() {
+        return calle;
+    }
+
+    public void setCalle(String calle) {
+        this.calle = calle;
+    }
+
     public String getColonia() {
         return colonia;
     }
@@ -51,11 +55,11 @@ public class ConsultorioMedico {
         this.colonia = colonia;
     }
 
-    public Ciudad getId_ciudad() {
+    public CiudadModel getCiudad() {
         return ciudad;
     }
 
-    public void setId_ciudad(Ciudad ciudad) {
+    public void setCiudad(CiudadModel ciudad) {
         this.ciudad = ciudad;
     }
 
@@ -83,31 +87,11 @@ public class ConsultorioMedico {
         this.cp = cp;
     }
 
-    public Medico getMedico() {
+    public MedicoModel getMedico() {
         return medico;
     }
 
-    public void setMedico(Medico medico) {
+    public void setMedico(MedicoModel medico) {
         this.medico = medico;
-    }
-
-    public long getConsultorioID() {
-        return consultorioID;
-    }
-
-    public String getCalle() {
-        return calle;
-    }
-
-    public void setCalle(String calle) {
-        this.calle = calle;
-    }
-
-    public Ciudad getCiudad() {
-        return ciudad;
-    }
-
-    public void setCiudad(Ciudad ciudad) {
-        this.ciudad = ciudad;
     }
 }
