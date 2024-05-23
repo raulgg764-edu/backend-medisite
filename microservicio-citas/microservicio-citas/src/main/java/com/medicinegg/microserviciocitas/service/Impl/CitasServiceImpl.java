@@ -40,29 +40,6 @@ public class CitasServiceImpl implements CitasService {
         MedicoModel medico = medicoFeignClient.getMedicoById(createCita.getId_medico());
 
         if(pacienteRepository.existsById((long) createCita.getId_paciente()) && medico!=null){
-            /*Date fecha = Date.valueOf(createCita.getFecha());
-            SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-
-            Time horaInicio = null;
-            try {
-                horaInicio = new Time(sdf.parse(createCita.getHoraInicio()).getTime());
-            } catch (ParseException e) {
-                throw new RuntimeException(e);
-            }
-            Time horaFin = null;
-            try {
-                horaFin = new Time(sdf.parse(createCita.getHoraInicio()).getTime());
-                horaFin = Time.valueOf(horaFin.toLocalTime().plusHours(1));
-            } catch (ParseException e) {
-                throw new RuntimeException(e);
-            }
-
-            entity.setFecha(fecha);
-            entity.setHoraInicio(horaInicio);
-            entity.setHoraFin(horaFin);
-            entity.setId_medico(createCita.getId_medico());
-            entity.setPaciente(pacienteRepository.findById((long)createCita.getId_paciente()).orElse(null));
-            entity.setEstado("reservada");*/
 
             entity = CitaMapper.createCitaModelToCitaEntity(createCita,pacienteRepository);
 

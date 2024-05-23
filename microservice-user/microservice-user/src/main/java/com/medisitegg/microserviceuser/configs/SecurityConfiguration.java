@@ -29,7 +29,7 @@ public class SecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http.csrf(AbstractHttpConfigurer::disable);
-        http.authorizeHttpRequests(req -> req.requestMatchers("/auth/**","/v3/**", "/swagger-ui/**","/**").permitAll().anyRequest().authenticated());
+        http.authorizeHttpRequests(req -> req.requestMatchers("/auth/**","/v3/**", "/swagger-ui/**").permitAll().anyRequest().authenticated());
         http.sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
         http.authenticationProvider(authenticationProvider);
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);

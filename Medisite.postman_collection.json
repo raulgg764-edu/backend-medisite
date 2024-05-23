@@ -1,0 +1,955 @@
+{
+	"info": {
+		"_postman_id": "5cf6fcd7-adeb-4fd7-ae45-c3dabd1ce635",
+		"name": "Medisite",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33402482"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"admin@example.com\",\r\n    \"contrasena\":\"admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"andres@example.com\",\r\n    \"contrasena\": \"ruben\",\r\n    \"rol\": \"user\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/auth/signup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints para autenticación"
+		},
+		{
+			"name": "Medico",
+			"item": [
+				{
+					"name": "GetAllMedicos",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsImlhdCI6MTcxNjQ1NjE1MiwiZXhwIjoxNzE2NDYzMzUyfQ.fViS5HAcrLOiTvnQEQndR2pGU_GnabV3CZVluWc_OzA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/medico/",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"medico",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetMedicoById",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsImlhdCI6MTcxNjQ1NjE1MiwiZXhwIjoxNzE2NDYzMzUyfQ.fViS5HAcrLOiTvnQEQndR2pGU_GnabV3CZVluWc_OzA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/medico/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"medico",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateMedico",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsImlhdCI6MTcxNjQ1NjE1MiwiZXhwIjoxNzE2NDYzMzUyfQ.fViS5HAcrLOiTvnQEQndR2pGU_GnabV3CZVluWc_OzA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"cedulaProfesional\": \"61402970\",\r\n  \"nombres\": \"Alex\",\r\n  \"apellidoP\": \"Leal\",\r\n  \"apellidoM\": \"Sanchez\",\r\n  \"fechaNacimiento\": \"2002-10-21\",\r\n  \"telefono\": \"8146295493\",\r\n  \"id_especialidad\": 10\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/medico/",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"medico",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateMedico",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsImlhdCI6MTcxNjQ1NjE1MiwiZXhwIjoxNzE2NDYzMzUyfQ.fViS5HAcrLOiTvnQEQndR2pGU_GnabV3CZVluWc_OzA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"cedulaProfesional\": \"11402970\",\r\n  \"nombres\": \"Juan\",\r\n  \"apellidoP\": \"Perez\",\r\n  \"apellidoM\": \"Lopez\",\r\n  \"fechaNacimiento\": \"1990-12-31\",\r\n  \"telefono\": \"8146295476\",\r\n  \"id_especialidad\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/medico/12",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"medico",
+								"12"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteMedico",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsImlhdCI6MTcxNjQ1NjE1MiwiZXhwIjoxNzE2NDYzMzUyfQ.fViS5HAcrLOiTvnQEQndR2pGU_GnabV3CZVluWc_OzA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/medico/12",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"medico",
+								"12"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetMedicoByEspecialidad",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "search",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsImlhdCI6MTcxNjQ1NjE1MiwiZXhwIjoxNzE2NDYzMzUyfQ.fViS5HAcrLOiTvnQEQndR2pGU_GnabV3CZVluWc_OzA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/medico/search/?ciudad=m&especialidad=medici&startHour=08:00&endHour=20:00",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"medico",
+								"search",
+								""
+							],
+							"query": [
+								{
+									"key": "ciudad",
+									"value": "m"
+								},
+								{
+									"key": "especialidad",
+									"value": "medici"
+								},
+								{
+									"key": "startHour",
+									"value": "08:00"
+								},
+								{
+									"key": "endHour",
+									"value": "20:00"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetMedicoDetails",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsImlhdCI6MTcxNjQ1NjE1MiwiZXhwIjoxNzE2NDYzMzUyfQ.fViS5HAcrLOiTvnQEQndR2pGU_GnabV3CZVluWc_OzA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/medico/details/",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"medico",
+								"details",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints relacionados con los datos de los médicos"
+		},
+		{
+			"name": "Especialidad",
+			"item": [
+				{
+					"name": "GetAllEspecialidades",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsImlhdCI6MTcxNjQ1NjE1MiwiZXhwIjoxNzE2NDYzMzUyfQ.fViS5HAcrLOiTvnQEQndR2pGU_GnabV3CZVluWc_OzA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/especialidad/",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"especialidad",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetEspecialidadById",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsImlhdCI6MTcxNjQ1NjE1MiwiZXhwIjoxNzE2NDYzMzUyfQ.fViS5HAcrLOiTvnQEQndR2pGU_GnabV3CZVluWc_OzA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/especialidad/20",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"especialidad",
+								"20"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints para ver especialidades"
+		},
+		{
+			"name": "Paciente",
+			"item": [
+				{
+					"name": "GetAllPacientes",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsImlhdCI6MTcxNjQ1NjE1MiwiZXhwIjoxNzE2NDYzMzUyfQ.fViS5HAcrLOiTvnQEQndR2pGU_GnabV3CZVluWc_OzA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "file",
+							"file": {}
+						},
+						"url": {
+							"raw": "localhost:8082/paciente/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"paciente",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetPacienteById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8082/paciente/5",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"paciente",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createPaciente",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsImlhdCI6MTcxNjQ1NjE1MiwiZXhwIjoxNzE2NDYzMzUyfQ.fViS5HAcrLOiTvnQEQndR2pGU_GnabV3CZVluWc_OzA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombres\":\"Raúl\",\r\n    \"apellidoP\":\"Garza\", \r\n    \"apellidoM\":\"Guillen\", \r\n    \"fechaNacimiento\":\"2001-01-20\", \r\n    \"telefono\":\"8112345678\", \r\n    \"emailPersonal\":\"raul@gmail.com\",\r\n    \"id_usuario\":2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8082/paciente/",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"paciente",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updatePaciente",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsImlhdCI6MTcxNjQ1NjE1MiwiZXhwIjoxNzE2NDYzMzUyfQ.fViS5HAcrLOiTvnQEQndR2pGU_GnabV3CZVluWc_OzA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombres\":\"Eduardo\",\r\n    \"apellidoP\":\"Garza\", \r\n    \"apellidoM\":\"Guillen\", \r\n    \"fechaNacimiento\":\"2001-01-20\", \r\n    \"telefono\":\"8112345678\", \r\n    \"emailPersonal\":\"raul@gmail.com\",\r\n    \"id_usuario\":2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8082/paciente/14",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"paciente",
+								"14"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deletePaciente",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsImlhdCI6MTcxNjQ1NjE1MiwiZXhwIjoxNzE2NDYzMzUyfQ.fViS5HAcrLOiTvnQEQndR2pGU_GnabV3CZVluWc_OzA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8082/paciente/14",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"paciente",
+								"14"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Citas",
+			"item": [
+				{
+					"name": "createCita",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsImlhdCI6MTcxNjQ1NjE1MiwiZXhwIjoxNzE2NDYzMzUyfQ.fViS5HAcrLOiTvnQEQndR2pGU_GnabV3CZVluWc_OzA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fecha\":\"2024-05-27\",\r\n    \"horaInicio\":\"18:00\",\r\n    \"id_paciente\":4,\r\n    \"id_medico\":1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8082/cita/",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"cita",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllCitaByPacienteDates",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsImlhdCI6MTcxNjQ1NjE1MiwiZXhwIjoxNzE2NDYzMzUyfQ.fViS5HAcrLOiTvnQEQndR2pGU_GnabV3CZVluWc_OzA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8082/cita/?startDate=2024-05-25&endDate=2024-05-31&id_paciente=4",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"cita",
+								""
+							],
+							"query": [
+								{
+									"key": "startDate",
+									"value": "2024-05-25"
+								},
+								{
+									"key": "endDate",
+									"value": "2024-05-31"
+								},
+								{
+									"key": "id_paciente",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCitaDetailsById",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsImlhdCI6MTcxNjQ1NjE1MiwiZXhwIjoxNzE2NDYzMzUyfQ.fViS5HAcrLOiTvnQEQndR2pGU_GnabV3CZVluWc_OzA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8082/cita/15",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"cita",
+								"15"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateCita",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsImlhdCI6MTcxNjQ1NjE1MiwiZXhwIjoxNzE2NDYzMzUyfQ.fViS5HAcrLOiTvnQEQndR2pGU_GnabV3CZVluWc_OzA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fecha\":\"2024-05-27\",\r\n    \"horaInicio\":\"19:00\",\r\n    \"id_paciente\":4,\r\n    \"id_medico\":1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8082/cita/13",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"cita",
+								"13"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cancelarCita",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsImlhdCI6MTcxNjQ1NjE1MiwiZXhwIjoxNzE2NDYzMzUyfQ.fViS5HAcrLOiTvnQEQndR2pGU_GnabV3CZVluWc_OzA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:8082/cita/cancel/15",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"cita",
+								"cancel",
+								"15"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "TurnoHorario",
+			"item": [
+				{
+					"name": "GetAllTurnos",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsImlhdCI6MTcxNjQ1NjE1MiwiZXhwIjoxNzE2NDYzMzUyfQ.fViS5HAcrLOiTvnQEQndR2pGU_GnabV3CZVluWc_OzA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/turnos/",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"turnos",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetTurnosByDateHour",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsImlhdCI6MTcxNjQ1NjE1MiwiZXhwIjoxNzE2NDYzMzUyfQ.fViS5HAcrLOiTvnQEQndR2pGU_GnabV3CZVluWc_OzA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/turnos/details/?id_medico=1&date=2024-05-23&hour=09:00",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"turnos",
+								"details",
+								""
+							],
+							"query": [
+								{
+									"key": "id_medico",
+									"value": "1"
+								},
+								{
+									"key": "date",
+									"value": "2024-05-23"
+								},
+								{
+									"key": "hour",
+									"value": "09:00"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getTurnoById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/turnos/5",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"turnos",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createTurno",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsImlhdCI6MTcxNjQ1NjE1MiwiZXhwIjoxNzE2NDYzMzUyfQ.fViS5HAcrLOiTvnQEQndR2pGU_GnabV3CZVluWc_OzA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id_medico\":10,\r\n    \"diasTurno\":\"1010100\",\r\n    \"inicioTurno\":\"09:00\",\r\n    \"finTurno\":\"19:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/turnos/",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"turnos",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateTurno",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id_medico\":10,\r\n    \"diasTurno\":\"1010100\",\r\n    \"inicioTurno\":\"12:00\",\r\n    \"finTurno\":\"19:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/turnos/7",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"turnos",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteTurno",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsImlhdCI6MTcxNjQ1NjE1MiwiZXhwIjoxNzE2NDYzMzUyfQ.fViS5HAcrLOiTvnQEQndR2pGU_GnabV3CZVluWc_OzA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/turnos/8",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"turnos",
+								"8"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
