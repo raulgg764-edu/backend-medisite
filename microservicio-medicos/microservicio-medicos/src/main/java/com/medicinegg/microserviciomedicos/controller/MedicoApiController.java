@@ -4,6 +4,7 @@ package com.medicinegg.microserviciomedicos.controller;
 import com.medicinegg.microserviciomedicos.model.CreateMedicoModel;
 import com.medicinegg.microserviciomedicos.model.MedicoDetailsModel;
 import com.medicinegg.microserviciomedicos.model.MedicoModel;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -13,6 +14,7 @@ import java.sql.Time;
 import java.util.List;
 
 @RequestMapping("/medico")
+@Tag(name = "Medicos", description = "Operaciones relacionadas a los medicos")
 public interface MedicoApiController {
     @GetMapping("/")
     public ResponseEntity<List<MedicoModel>> getAllMedico();

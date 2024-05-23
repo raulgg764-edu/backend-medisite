@@ -30,6 +30,7 @@ public class MedicoApiControllerImpl implements MedicoApiController {
 
     @Override
     public ResponseEntity<List<MedicoModel>> getAllMedico() {
+
         return ResponseEntity.ok().body(medicoService.getAllMedico());
     }
 
