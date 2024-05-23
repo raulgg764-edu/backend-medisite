@@ -26,6 +26,8 @@ public class PacienteModel {
     @Pattern(regexp = "^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$",message = "Email address is not valid")
     private String emailPersonal;
 
+    private int id_usuario;
+
     public String getNombres() {
         return nombres;
     }
@@ -72,5 +74,13 @@ public class PacienteModel {
 
     public void setEmailPersonal(String emailPersonal) {
         this.emailPersonal = emailPersonal;
+    }
+
+    public int getId_usuario() {
+        return id_usuario;
+    }
+
+    public void setId_usuario(int id_usuario) {
+        this.id_usuario = id_usuario;
     }
 }

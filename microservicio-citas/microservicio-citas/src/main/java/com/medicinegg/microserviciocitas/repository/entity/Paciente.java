@@ -23,6 +23,16 @@ public class Paciente {
     @OneToMany(mappedBy = "paciente")
     private List<Cita> citas;
 
+    private int id_usuario;
+
+    public int getId_usuario() {
+        return id_usuario;
+    }
+
+    public void setId_usuario(int id_usuario) {
+        this.id_usuario = id_usuario;
+    }
+
     public long getPacienteID() {
         return pacienteID;
     }

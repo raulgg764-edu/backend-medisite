@@ -1,9 +1,8 @@
-package com.medicinegg.microserviciomedicos.configs;
+package com.medicinegg.microserviciocitas.configs;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -50,7 +49,7 @@ public class SecurityConfiguration {
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
 
-        configuration.setAllowedOrigins(List.of("http://localhost:8081","localhost:8081"));
+        configuration.setAllowedOrigins(List.of("http://localhost:8082","localhost:8082"));
         configuration.setAllowedMethods(List.of("GET","POST","DELETE","PUT"));
         configuration.setAllowedHeaders(List.of("Authorization","Content-Type"));
 

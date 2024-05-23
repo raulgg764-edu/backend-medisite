@@ -1,6 +1,7 @@
-package com.medicinegg.microserviciomedicos.configs;
+package com.medicinegg.microserviciocitas.configs;
 
-import com.medicinegg.microserviciomedicos.service.JwtService;
+
+import com.medicinegg.microserviciocitas.service.JwtService;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.UnsupportedJwtException;

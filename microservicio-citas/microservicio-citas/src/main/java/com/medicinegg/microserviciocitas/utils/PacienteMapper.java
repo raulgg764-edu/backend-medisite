@@ -12,6 +12,7 @@ public class PacienteMapper {
         model.setFechaNacimiento(entity.getFechaNacimiento());
         model.setTelefono(entity.getTelefono());
         model.setEmailPersonal(entity.getEmailPersonal());
+        model.setId_usuario(entity.getId_usuario());
 
         return model;
     }
@@ -25,6 +26,7 @@ public class PacienteMapper {
         entity.setFechaNacimiento(model.getFechaNacimiento());
         entity.setTelefono(model.getTelefono());
         entity.setEmailPersonal(model.getEmailPersonal());
+        entity.setId_usuario(model.getId_usuario());
 
         return entity;
     }
